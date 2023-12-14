@@ -123,6 +123,8 @@ def evaluate_combination(df, quasi_identifiers, sensitive_col, k, l, original_df
 ##########################################################################################
 
 dropped = int(input('How many records would you allow to drop?\n'))
+max_K = int(input('Maximum k value allowed?\n'))
+
 # Define quasi-identifiers
 quasi_identifiers = ['age', 'zipcode']
 sensitive_col = 'medical_condition'
@@ -131,7 +133,7 @@ sensitive_col = 'medical_condition'
 best_combination = None
 highest_score = -1
 
-for k, l in itertools.product(range(1, 20), repeat=2):  # Example range, adjust as needed
+for k, l in itertools.product(range(1, max_K), repeat=2):  # Example range, adjust as needed
     utility, privacy = evaluate_combination(data, quasi_identifiers, sensitive_col, k, l, df)
     score = combined_score(utility, privacy)
 
